@@ -1,0 +1,30 @@
+@keyframes rotateY {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes rotateX {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+
+.rotateY {
+  animation: rotateY 10s linear;
+}
+
+.rotateX {
+  animation: rotateX 10s linear;
+}
+
+button:hover {
+  transition: all 0.4s ease-in-out;
+  opacity: 70%;
+}

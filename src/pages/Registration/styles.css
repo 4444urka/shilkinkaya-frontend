@@ -1,0 +1,15 @@
+.RegistrationFormContainer {
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  min-width: 20%;
+  justify-content: center;
+  align-items: center;
+  gap: 90px;
+}
+
+@media (max-width: 600px) {
+  .RegistrationFormContainer {
+    gap: 45px;
+  }
+}

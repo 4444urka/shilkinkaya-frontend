@@ -1,0 +1,13 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  max-width: 100%;
+  /* background-color: rgb(240, 240, 240); */
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

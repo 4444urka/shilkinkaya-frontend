@@ -2,8 +2,6 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { Box, Typography } from "@mui/material";
 import { animated, useSpring } from "@react-spring/web";
 import React from "react";
-import Header from "../../components/Header/Header";
-import MobileHeader from "../../components/MobileHeader/MobileHeader";
 import { useAppDispatch, useAppMedia, useAppSelector } from "../../hooks/hooks";
 import { decrementByAmount, incrementByAmount } from "../../slices/coinSlice";
 
@@ -40,8 +38,6 @@ const Casino = () => {
 
   return (
     <>
-      {matches ? <Header>Shilkinskaya 15</Header> : <MobileHeader />}
-
       <Box
         sx={{
           display: "flex",

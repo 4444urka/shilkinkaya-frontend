@@ -2,9 +2,8 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { Box, Typography } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-mui";
-import AnimatedHeader from "../../components/AnimatedHeader/AnimatedHeader";
-import "./styles.css";
 import { NavLink } from "react-router-dom";
+import "./styles.css";
 
 interface Values {
   username: string;
@@ -36,7 +35,6 @@ const onSubmit = (
 const Login = () => {
   return (
     <>
-      <AnimatedHeader>Shilkinskaya 15</AnimatedHeader>
       <Box
         sx={{
           display: "flex",

@@ -1,6 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import Header from "../../components/Header/Header";
-import MobileHeader from "../../components/MobileHeader/MobileHeader";
 import Paragraph from "../../components/Paragraph/Paragraph";
 import { useAppMedia } from "../../hooks/hooks";
 
@@ -9,7 +7,6 @@ const Homepage = () => {
 
   return (
     <>
-      {matches ? <Header>Shilkinskaya 15</Header> : <MobileHeader />}
 
       <Box
         sx={{

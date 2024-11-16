@@ -3,7 +3,6 @@ import { Box, Typography } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-mui";
 import { NavLink } from "react-router-dom";
-import AnimatedHeader from "../../components/AnimatedHeader/AnimatedHeader";
 import "./styles.css";
 
 interface Values {
@@ -36,7 +35,6 @@ const onSubmit = (
 const Login = () => {
   return (
     <>
-      <AnimatedHeader>Shilkinskaya 15</AnimatedHeader>
       <Box
         sx={{
           display: "flex",

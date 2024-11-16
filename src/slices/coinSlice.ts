@@ -7,17 +7,23 @@ export const coinSlice = createSlice({
   },
   reducers: {
     increment: (state) => {
-      state.value += 1;
+      state.value++;
     },
     decrement: (state) => {
-      state.value -= 1;
+      state.value--;
     },
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload;
     },
+    decrementByAmount: (state, action: PayloadAction<number>) => {
+      if (state.value - action.payload >= 0) {
+        state.value -= action.payload;
+      }
+    },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = coinSlice.actions;
+export const { increment, decrement, incrementByAmount, decrementByAmount } =
+  coinSlice.actions;
 
 export default coinSlice.reducer;

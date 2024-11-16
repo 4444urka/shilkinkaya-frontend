@@ -2,9 +2,9 @@ import { LoadingButton } from "@mui/lab";
 import { Box, Typography } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-mui";
+import { NavLink } from "react-router-dom";
 import AnimatedHeader from "../../components/AnimatedHeader/AnimatedHeader";
 import "./styles.css";
-import { NavLink } from "react-router-dom";
 
 interface Values {
   username: string;

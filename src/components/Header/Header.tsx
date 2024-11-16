@@ -140,14 +140,16 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
           Кошелёк
         </Button>
       </NavLink>
-      <Button
-        variant="text"
-        sx={{
-          color: "secondary.main",
-        }}
-      >
-        Слоты
-      </Button>
+      <NavLink to="/casino">
+        <Button
+          variant="text"
+          sx={{
+            color: "secondary.main",
+          }}
+        >
+          Слоты
+        </Button>
+      </NavLink>
     </Box>
   );
 };

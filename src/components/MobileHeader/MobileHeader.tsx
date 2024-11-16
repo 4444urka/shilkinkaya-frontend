@@ -23,8 +23,8 @@ export default function MobileHeader() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky" color="secondary" sx={{ boxShadow: 0, mb: 5 }}>
-        <Toolbar>
+      <AppBar position="sticky" color="primary" sx={{ boxShadow: 0, mb: 5 }}>
+        <Toolbar sx={{ height: 70 }}>
           <IconButton
             size="large"
             edge="start"

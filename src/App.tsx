@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Registration/Registration";
 import Wallet from "./pages/Wallet/Wallet";
+import Casino from "./pages/Casino/Casino";
 
 function App() {
   return (
@@ -15,12 +16,13 @@ function App() {
           display: "flex",
           flexDirection: "column",
           minHeight: "100vh",
-          margin: 0 // Это гарантирует, что контейнер будет занимать всю высоту страницы
+          margin: 0, // Это гарантирует, что контейнер будет занимать всю высоту страницы
         }}
       >
-        <Box component="main" sx={{ flex: 1, }}>
+        <Box component="main" sx={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/casino" element={<Casino />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/wallet" element={<Wallet />} />

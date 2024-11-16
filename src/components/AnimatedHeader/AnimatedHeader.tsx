@@ -4,14 +4,11 @@ import React from "react";
 import "./styles.css";
 
 interface AnimatedHeaderProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 // Хэдер который используется на странице с входом и регистрацией.
-const AnimatedHeader: React.FC<AnimatedHeaderProps> = ({
-  children = "error",
-}) => {
-
+const AnimatedHeader: React.FC<AnimatedHeaderProps> = ({ children }) => {
   // Массив состоящий из надписей, которые затем будут плыть влево.
   const scrollItems = Array.from({ length: 100 }, () => `${children}`);
 

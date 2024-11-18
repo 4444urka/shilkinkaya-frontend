@@ -29,7 +29,7 @@ const Casino = () => {
           REWARDS[Math.floor(Math.random() * REWARDS.length)];
         setReward(randomReward);
         setSpinning(false);
-        dispatch(incrementByAmount(reward));
+        dispatch(incrementByAmount(randomReward));
       }, 1000);
     } else {
       alert("Недостаточно монет!");

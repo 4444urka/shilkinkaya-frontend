@@ -10,7 +10,11 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function MobileHeader() {
+interface MobileHeaderProps {
+  children: React.ReactNode;
+}
+
+const MobileHeader: React.FC<MobileHeaderProps> = ({ children }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -44,7 +48,7 @@ export default function MobileHeader() {
               fontSize: "20px",
             }}
           >
-            Shilkinkaya 15
+            {children}
           </Typography>
           <div>
             <IconButton
@@ -84,4 +88,6 @@ export default function MobileHeader() {
       </AppBar>
     </Box>
   );
-}
+};
+
+export default MobileHeader;

@@ -1,6 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import Header from "../../components/Header/Header";
-import MobileHeader from "../../components/MobileHeader/MobileHeader";
 import { useAppDispatch, useAppMedia, useAppSelector } from "../../hooks/hooks";
 import { increment } from "../../slices/coinSlice";
 
@@ -10,8 +8,6 @@ const Wallet = () => {
   const matches = useAppMedia();
   return (
     <>
-      {matches ? <Header>Shilkinskaya 15</Header> : <MobileHeader />}
-
       <Box
         sx={{
           display: "flex",

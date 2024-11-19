@@ -9,3 +9,7 @@ export const useAppMedia = () => {
   const media = useMediaQuery("(min-width:600px)");
   return media;
 };
+
+export const useAuth = () => {
+  return true;
+};

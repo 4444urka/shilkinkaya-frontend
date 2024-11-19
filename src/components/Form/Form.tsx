@@ -10,6 +10,7 @@ export interface IFormProps extends React.FormHTMLAttributes<HTMLFormElement> {
 
 // TODO: Добавить валидацию
 
+// Абстрактный компонент формы, он принимает в себя inputs или textarea и кнопку отправки. При отправки формы мы получаем Object с ключами formName и значениями.
 const Form: React.FC<IFormProps> = ({
   children,
   onSubmit,

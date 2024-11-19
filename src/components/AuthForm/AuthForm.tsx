@@ -9,6 +9,7 @@ export interface IAuthFormProps extends IFormProps {
   buttonText: string;
 }
 
+// Форма, которая используется на страницах с авторизацией и регистрацией.
 const AuthForm: React.FC<IAuthFormProps> = ({
   children,
   buttonText,

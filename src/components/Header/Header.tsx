@@ -150,17 +150,6 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
           Слоты
         </Button>
       </NavLink>
-
-      <NavLink to="/chat">
-        <Button
-          variant="text"
-          sx={{
-            color: "secondary.main",
-          }}
-        >
-          Чат
-        </Button>
-      </NavLink>
     </Box>
   );
 };

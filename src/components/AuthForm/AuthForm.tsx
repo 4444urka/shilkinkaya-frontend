@@ -16,7 +16,7 @@ const AuthForm: React.FC<IAuthFormProps> = ({
   ...restProps
 }) => {
   return (
-    <Form sx={{ width: "20vw" }} {...restProps}>
+    <Form sx={{ width: "20vw", minWidth: "300px", gap: 80 }} {...restProps}>
       <Typography
         variant="h3"
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}

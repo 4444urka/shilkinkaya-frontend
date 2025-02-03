@@ -25,16 +25,16 @@ function App() {
           margin: 0,
         }}
       >
-        <Box component="main" sx={{ flex: 1 }}>
+        <Box component="main" sx={{ flex: 1, backgroundColor: "white", pb: 5 }}>
           <Routes>
             <Route
               path="/"
               element={
                 <>
                   {matches ? (
-                    <Header>Shilkinskaya 15</Header>
+                    <Header>Shilkinskaya 21</Header>
                   ) : (
-                    <MobileHeader>Shilkinkaya 15</MobileHeader>
+                    <MobileHeader>Shilkinkaya 21</MobileHeader>
                   )}
                   <Outlet />
                 </>
@@ -48,7 +48,7 @@ function App() {
               path="/"
               element={
                 <>
-                  <AnimatedHeader>Shilkinskaya 15</AnimatedHeader>
+                  <AnimatedHeader>Shilkinskaya 21</AnimatedHeader>
                   <Outlet />
                 </>
               }

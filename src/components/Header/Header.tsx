@@ -67,7 +67,6 @@ const Header: React.FC<IHeaderProps> = ({ children }) => {
         width: "100%",
         alignItems: "center",
         height: 70,
-        marginBottom: 5,
         gap: 5,
         paddingLeft: 30,
         bgcolor: "primary.main",
@@ -148,6 +147,16 @@ const Header: React.FC<IHeaderProps> = ({ children }) => {
           }}
         >
           Слоты
+        </Button>
+      </NavLink>
+      <NavLink to="/chat">
+        <Button
+          variant="text"
+          sx={{
+            color: "secondary.main",
+          }}
+        >
+          Чат
         </Button>
       </NavLink>
     </Box>

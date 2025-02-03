@@ -19,7 +19,6 @@ const AnimatedHeader: React.FC<IAnimatedHeaderProps> = ({ children }) => {
         width: "100%",
         alignItems: "center",
         height: 60,
-        marginBottom: 10,
         bgcolor: "primary.main",
         overflow: "hidden",
         position: "relative",

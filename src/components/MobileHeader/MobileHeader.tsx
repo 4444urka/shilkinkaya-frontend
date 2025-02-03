@@ -26,8 +26,8 @@ const MobileHeader: React.FC<IMobileHeaderProps> = ({ children }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky" color="primary" sx={{ boxShadow: 0, mb: 5 }}>
+    <Box>
+      <AppBar position="sticky" color="primary" sx={{ boxShadow: 0, mb: 0 }}>
         <Toolbar sx={{ height: 70 }}>
           <IconButton
             size="large"

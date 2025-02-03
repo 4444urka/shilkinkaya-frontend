@@ -25,7 +25,7 @@ function App() {
           margin: 0,
         }}
       >
-        <Box component="main" sx={{ flex: 1 }}>
+        <Box component="main" sx={{ flex: 1, backgroundColor: "white", pb: 5 }}>
           <Routes>
             <Route
               path="/"

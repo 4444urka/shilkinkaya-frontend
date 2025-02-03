@@ -11,7 +11,6 @@ const Footer = () => {
         backgroundColor: "primary.main",
         color: "white",
         padding: "30px 0",
-        marginTop: 10, // Это позволяет футеру оставаться внизу страницы
       }}
     >
       <Stack

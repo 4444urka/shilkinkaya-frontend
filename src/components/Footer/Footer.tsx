@@ -33,7 +33,7 @@ const Footer = () => {
             Контакты
           </Typography>
           <Typography variant="body2">
-            Адрес: ул. Шилкинская, 15, Владивосток
+            Адрес: ул. Шилкинская, 21, Владивосток
           </Typography>
 
           <Typography variant="body2">+7 (995) 867-02-08</Typography>
@@ -73,7 +73,7 @@ const Footer = () => {
         }}
       >
         <Typography variant="body2" sx={{ color: "#ffffffa4" }}>
-          © {new Date().getFullYear()} Шилкинская 15. Все права защищены.
+          © {new Date().getFullYear()} Шилкинская 21. Все права защищены.
         </Typography>
       </Box>
     </Box>

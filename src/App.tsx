@@ -7,7 +7,6 @@ import Header from "./components/Header/Header";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
 import { useAppMedia } from "./hooks/hooks";
 import Casino from "./pages/Casino/Casino";
-import Chat from "./pages/Chat/Chat";
 import Homepage from "./pages/Homepage/Homepage";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Registration/Registration";
@@ -33,16 +32,15 @@ function App() {
               element={
                 <>
                   {matches ? (
-                    <Header>Shilkinskaya 15</Header>
+                    <Header>Shilkinskaya 21</Header>
                   ) : (
-                    <MobileHeader>Shilkinkaya 15</MobileHeader>
+                    <MobileHeader>Shilkinkaya 21</MobileHeader>
                   )}
                   <Outlet />
                 </>
               }
             >
               <Route index element={<Homepage />} />
-              <Route path="chat" element={<Chat />} />
               <Route path="casino" element={<Casino />} />
               <Route path="wallet" element={<Wallet />} />
             </Route>
@@ -50,7 +48,7 @@ function App() {
               path="/"
               element={
                 <>
-                  <AnimatedHeader>Shilkinskaya 15</AnimatedHeader>
+                  <AnimatedHeader>Shilkinskaya 21</AnimatedHeader>
                   <Outlet />
                 </>
               }

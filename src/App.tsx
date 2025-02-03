@@ -7,7 +7,6 @@ import Header from "./components/Header/Header";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
 import { useAppMedia } from "./hooks/hooks";
 import Casino from "./pages/Casino/Casino";
-import Chat from "./pages/Chat/Chat";
 import Homepage from "./pages/Homepage/Homepage";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Registration/Registration";
@@ -42,7 +41,6 @@ function App() {
               }
             >
               <Route index element={<Homepage />} />
-              <Route path="chat" element={<Chat />} />
               <Route path="casino" element={<Casino />} />
               <Route path="wallet" element={<Wallet />} />
             </Route>

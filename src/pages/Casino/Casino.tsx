@@ -27,9 +27,12 @@ const Casino = () => {
       setTimeout(() => {
         const randomReward =
           REWARDS[Math.floor(Math.random() * REWARDS.length)];
-        setReward(randomReward);
-        setSpinning(false);
+        setReward((prevReward) => {
+          const newReward = prevReward + randomReward;
+          return newReward;
+        });
         dispatch(incrementByAmount(randomReward));
+        setSpinning(false);
       }, 1000);
     } else {
       alert("Недостаточно монет!");

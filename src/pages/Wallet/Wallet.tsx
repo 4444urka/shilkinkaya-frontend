@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useAppDispatch, useAppMedia, useAppSelector } from "../../hooks/hooks";
 import { increment } from "../../slices/coinSlice";

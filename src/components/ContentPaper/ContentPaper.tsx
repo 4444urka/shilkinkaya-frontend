@@ -1,11 +1,11 @@
 import { Paper } from "@mui/material";
 import React from "react";
 
-interface ContentPaperProps {
+interface IContentPaperProps {
   children?: React.ReactNode;
 }
 
-const ContentPaper: React.FC<ContentPaperProps> = ({ children }) => {
+const ContentPaper: React.FC<IContentPaperProps> = ({ children }) => {
   return (
     <Paper
       elevation={2}

@@ -4,11 +4,11 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./styles.css";
 
-interface HeaderProps {
+interface IHeaderProps {
   children?: React.ReactNode;
 }
 
-const Header: React.FC<HeaderProps> = ({ children }) => {
+const Header: React.FC<IHeaderProps> = ({ children }) => {
   // Функция, выбирающая случайный класс анимации из списка и применяющая его к объекту
   const randomAnimate = (
     className: string, // Класс с объектом, к которому необходимо применить анимацию

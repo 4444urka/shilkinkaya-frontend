@@ -10,11 +10,11 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
-interface MobileHeaderProps {
+interface IMobileHeaderProps {
   children: React.ReactNode;
 }
 
-const MobileHeader: React.FC<MobileHeaderProps> = ({ children }) => {
+const MobileHeader: React.FC<IMobileHeaderProps> = ({ children }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {

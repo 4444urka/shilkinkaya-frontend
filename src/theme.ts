@@ -33,6 +33,16 @@ export const theme = createTheme({
     body2: {
       fontSize: "14px",
     },
+
+    subtitle1: {
+      fontSize: "14px",
+      color: grey[500],
+    },
+
+    subtitle2: {
+      fontSize: "10px",
+      color: grey[500],
+    }
   },
 
   palette: {

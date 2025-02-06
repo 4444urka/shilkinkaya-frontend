@@ -67,12 +67,14 @@ const Chat = () => {
             overflowY: "auto",
           }}
         >
+          
           {/* TODO: УДалить */}
           <MessageBox date={new Date().toISOString()}>
             <IconButton onClick={() => dispatch(removeAllMessages())}>
               <Delete />
             </IconButton>
           </MessageBox>
+
           {Object.keys(groupedMessages).map((date) => (
             <>
               <Typography

@@ -1,3 +1,4 @@
+import React from "react";
 import SendIcon from "@mui/icons-material/Send";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useAppMedia } from "../../hooks/hooks";

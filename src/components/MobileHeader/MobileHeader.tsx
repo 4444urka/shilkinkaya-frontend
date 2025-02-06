@@ -1,20 +1,16 @@
+import { AppBar, Box, Drawer, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import * as React from "react";
+import React from "react";
+import MobileNavMenu from "../MobileNavMenu/MobileNavMenu";
 import { NavLink } from "react-router-dom";
 
-interface MobileHeaderProps {
+
+interface IMobileHeaderProps {
   children: React.ReactNode;
 }
 
-const MobileHeader: React.FC<MobileHeaderProps> = ({ children }) => {
+const MobileHeader: React.FC<IMobileHeaderProps> = ({ children }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -25,11 +21,18 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ children }) => {
     setAnchorEl(null);
   };
 
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+  const toggleDrawer = (open: boolean) => () => {
+    setDrawerOpen(open);
+  };
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky" color="primary" sx={{ boxShadow: 0, mb: 5 }}>
+    <Box>
+      <AppBar position="sticky" color="primary" sx={{ boxShadow: 0, mb: 0 }}>
         <Toolbar sx={{ height: 70 }}>
           <IconButton
+            onClick={toggleDrawer(true)}
             size="large"
             edge="start"
             color="inherit"
@@ -38,13 +41,16 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
+          <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+            <MobileNavMenu onClickCloseButton={toggleDrawer(false)}>Shilkinskaya 21</MobileNavMenu>
+          </Drawer>
           <Typography
             variant="h6"
             component="div"
             sx={{
               flexGrow: 1,
               fontWeight: "bold",
-              fontStyle: "italic",
+              // fontStyle: "italic",
               fontSize: "20px",
             }}
           >

@@ -106,9 +106,7 @@ const Chat = () => {
             backgroundColor: "white",
           }}
         >
-          <MessageTextArea onSubmit={onSubmit}>
-            Отправить сообщение
-          </MessageTextArea>
+          <MessageTextArea onSubmit={onSubmit} placeholder="Отправить сообщение"/>
         </Box>
       </Box>
     </Box>

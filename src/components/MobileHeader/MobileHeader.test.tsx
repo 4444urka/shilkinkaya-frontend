@@ -52,4 +52,21 @@ describe("MobileHeader component", () => {
     const menuIcon = screen.getByLabelText("menu");
     expect(menuIcon).toBeInTheDocument();
   });
+  test("opens drawer when menu icon is clicked", () => {
+    renderMobileHeader();
+    const menuIcon = screen.getByLabelText("menu");
+    fireEvent.click(menuIcon);
+    const presentations = screen.getAllByRole("presentation");
+    expect(presentations[0]).toBeInTheDocument();
+  });
+  
+  test("closes drawer when onClose is triggered", () => {
+    renderMobileHeader();
+    const menuIcon = screen.getByLabelText("menu");
+    fireEvent.click(menuIcon);
+    const [drawerElement] = screen.getAllByRole("presentation");
+    fireEvent.keyDown(drawerElement, { key: "Escape" });
+    expect(screen.queryByRole("presentation")).not.toBeInTheDocument();
+  });
 });
+  

@@ -1,0 +1,25 @@
+.animatedMessage {
+  animation: pump 0.3s ease-in-out;
+}
+
+@keyframes babubabu {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pump {
+  from {
+    transform: translateX(5%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}

@@ -128,6 +128,9 @@ const Header: React.FC<IHeaderProps> = ({ children }) => {
         <NavLink to="/register">
           <MenuItem onClick={handleClose}>Регистрация</MenuItem>
         </NavLink>
+        <NavLink to="/profile">
+          <MenuItem onClick={handleClose}>Профиль</MenuItem>
+        </NavLink>
       </Menu>
       <NavLink to="/wallet">
         <Button

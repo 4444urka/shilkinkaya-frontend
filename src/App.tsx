@@ -12,6 +12,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Registration/Registration";
 import Wallet from "./pages/Wallet/Wallet";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   const matches = useAppMedia();
@@ -49,6 +50,7 @@ function App() {
             <Route index element={<Homepage />} />
             <Route path="casino" element={<Casino />} />
             <Route path="wallet" element={<Wallet />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
           <Route
             path="/"

@@ -115,6 +115,7 @@ const Chat = () => {
                       key={`${message.date}-${index}`}
                       sx={{
                         display: "flex",
+                        maxWidth: "95%",
                         mt: sameOwner ? 0.5 : 2, // Меньший отступ между сообщениями одного автора
                         flexDirection: "row",
                         alignItems: "center",

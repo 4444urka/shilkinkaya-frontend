@@ -1,20 +1,15 @@
 import SendIcon from "@mui/icons-material/Send";
-import {
-  BaseTextFieldProps,
-  IconButton,
-  InputAdornment,
-  TextField,
-} from "@mui/material";
+import { IconButton, InputBase, InputBaseProps, Paper } from "@mui/material";
 import React, { useState } from "react";
 
-interface IMessageTextAreaProps extends Omit<BaseTextFieldProps, "onSubmit"> {
+interface IMessageTextAreaProps extends Omit<InputBaseProps, "onSubmit"> {
   onSubmit: (text: string) => void;
-  children: React.ReactNode;
+  placeholder: string;
 }
 
 const MessageTextArea: React.FC<IMessageTextAreaProps> = ({
   onSubmit,
-  children,
+  placeholder,
   ...restProps
 }) => {
   const [messageText, setMessageText] = useState("");
@@ -30,31 +25,35 @@ const MessageTextArea: React.FC<IMessageTextAreaProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
+    <Paper
+      onSubmit={handleSubmit}
+      component="form"
+      sx={{
+        backgroundColor: "white",
+        p: "5px 10px",
+        display: "flex",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
+      <InputBase
         value={messageText}
         onChange={handleChange}
-        label={children}
-        sx={{
-          border: 0,
-          outline: 0,
-          width: "100%",
-          boxSizing: "border-box",
-        }}
-        slotProps={{
-          input: {
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton type="submit">
-                  <SendIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          },
-        }}
+        sx={{ ml: 1, flex: 1 }}
+        placeholder={placeholder}
+        inputProps={{ "aria-label": "send message" }}
         {...restProps}
       />
-    </form>
+      <IconButton
+        disabled={!messageText}
+        type="submit"
+        color="primary"
+        sx={{ p: "10px" }}
+        aria-label="directions"
+      >
+        <SendIcon />
+      </IconButton>
+    </Paper>
   );
 };
 

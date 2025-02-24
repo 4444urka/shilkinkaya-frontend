@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import React from "react";
+import { scroll } from "../../lib/animations";
 import "./styles.css";
 
 interface IAnimatedHeaderProps {
@@ -24,7 +25,13 @@ const AnimatedHeader: React.FC<IAnimatedHeaderProps> = ({ children }) => {
         position: "relative",
       }}
     >
-      <Box className="animatedHeader">
+      <Box
+        sx={{
+          display: "flex",
+          animation: `${scroll} 1000s linear infinite`,
+          gap: "15px",
+        }}
+      >
         {scrollItems.map((item, index) => (
           <Typography
             key={index}

@@ -11,19 +11,3 @@
   transition: all 0.3s ease-in-out;
   opacity: 100%;
 }
-
-.animatedHeader {
-  display: flex;
-  animation: scroll 1000s linear infinite;
-  gap: 15px;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}

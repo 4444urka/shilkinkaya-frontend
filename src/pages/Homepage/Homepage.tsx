@@ -1,45 +1,44 @@
-import { Box, Typography } from "@mui/material";
-import Paragraph from "../../components/Paragraph/Paragraph";
+import { Box } from "@mui/material";
+import React from "react";
+import Typed from "typed.js";
+import { text } from "../../utils/homepageText";
+import "./styles.css";
 import { useAppMedia } from "../../hooks/hooks";
 
 const Homepage = () => {
-  const matches = useAppMedia()
+  const matches = useAppMedia();
+  // Create reference to store the DOM element containing the animation
+  const el = React.useRef(null);
+
+  React.useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: text,
+      typeSpeed: 20,
+      startDelay: 1000,
+      fadeOut: true,
+      backDelay: 6000,
+      loop: true,
+      smartBackspace: true,
+      backSpeed: 20,
+    });
+
+    return () => {
+      // Destroy Typed instance during cleanup to stop animation
+      typed.destroy();
+    };
+  }, []);
 
   return (
-    <>
-
-      <Box
-        sx={{
-          display: "flex",
-          paddingX: matches ? 30 : 2, // Используем paddingX для горизонтальных отступов
-          gap: 7,
-          flexDirection: "column",
-        }}
-      >
-        <Typography variant="h3">Шилкинская улица</Typography>
-        <Paragraph>
-          Шилкинская улица — улица Владивостока, петлеобразной формы, начинается
-          и заканчивается у Проспекта Красного Знамени.
-        </Paragraph>
-
-        <Typography variant="h3">История</Typography>
-
-        <Paragraph>
-          Название улицы, возможно, дано по реке Шилка, известной с самого
-          начала освоения Забайкалья русскими землепроходцами («Силькарь»
-          по-эвенкийски — узкая долина, впоследствии русифицировалось в Шилкарь)
-        </Paragraph>
-
-        <Typography variant="h3">Достопримечательности</Typography>
-        <Paragraph>Нагорный парк</Paragraph>
-
-        <Typography variant="h3">Известные жители</Typography>
-        <Paragraph>
-          В 1919—1920 годах с семьей жил известный русский поэт и художник Давид
-          Бурлюк.
-        </Paragraph>
-      </Box>
-    </>
+    <Box
+      sx={{
+        w: "100%",
+        px: matches ? 10 : 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <span className="mainText" ref={el} />
+    </Box>
   );
 };
 

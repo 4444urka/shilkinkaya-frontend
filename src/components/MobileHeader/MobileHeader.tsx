@@ -29,7 +29,7 @@ const MobileHeader: React.FC<IMobileHeaderProps> = ({ children }) => {
 
   return (
     <Box>
-      <AppBar position="sticky" color="primary" sx={{ boxShadow: 0, mb: 0 }}>
+      <AppBar color="primary" sx={{ position:"fixed",boxShadow: 0, mb: 0, top: 0, left: 0  }}>
         <Toolbar sx={{ height: 70 }}>
           <IconButton
             onClick={toggleDrawer(true)}

@@ -48,7 +48,7 @@ const MessageTextArea: React.FC<IMessageTextAreaProps> = ({
         disabled={!messageText}
         type="submit"
         color="primary"
-        sx={{ p: "10px", mr: "15px" }}
+        sx={{ p: "10px" }}
         aria-label="directions"
       >
         <SendIcon />

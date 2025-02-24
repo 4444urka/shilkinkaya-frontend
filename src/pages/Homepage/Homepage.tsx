@@ -15,10 +15,11 @@ const Homepage = () => {
       strings: text,
       typeSpeed: 20,
       startDelay: 1000,
+      fadeOut: true,
       backDelay: 6000,
       loop: true,
       smartBackspace: true,
-      backSpeed: 5,
+      backSpeed: 20,
     });
 
     return () => {

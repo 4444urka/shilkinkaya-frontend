@@ -1,33 +1,47 @@
-import "./styles.css";
 import { Avatar, Box, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import DownButton from "../../components/DownButton/DownButton";
 import MessageBox from "../../components/MessageBox/MessageBox";
 import MessageTextArea from "../../components/MessageTextArea/MessageTextArea";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useAppDispatch, useAppMedia, useAppSelector } from "../../hooks/hooks";
+import { pump } from "../../lib/animations";
 import { addMessage } from "../../slices/messageSlice";
-import { TMessage } from "../../types/TMessage";
-import { dateParse } from "../../utils/dateParse";
+import { groupMessagesByDate } from "../../utils/groupMessageByDate";
 
 const Chat = () => {
-  // Хук для автоматической прокрутки чата к последнему сообщению
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // Достаём массив сообщений из хранилища
+  // Состояние, отслеживающее, находимся ли мы у нижней границы чата
+  const [isAtBottom, setIsAtBottom] = useState<boolean>(true);
+  const matches = useAppMedia();
   const messages = useAppSelector((state) => state.messages.messages);
-
-  // Получаем функцию для диспатча экшенов Redux
   const dispatch = useAppDispatch();
+  const groupedMessages = groupMessagesByDate(messages);
 
-  // После каждого обновления массива сообщений скроллим чат вниз
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Колбэк, вызываемый при отправке нового сообщения
+  // Обработчик прокрутки, скрывающий кнопку, если скролл находится внизу
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!chatContainerRef.current) return;
+      const { scrollTop, scrollHeight, clientHeight } =
+        chatContainerRef.current;
+      setIsAtBottom(scrollHeight - scrollTop <= clientHeight + 30);
+    };
+
+    chatContainerRef.current?.addEventListener("scroll", handleScroll);
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      chatContainerRef.current?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const onSubmit = (text: string) => {
     if (text) {
-      // Если поле не пустое, создаём объект сообщения и диспатчим экшен
       dispatch(
         addMessage({
           ownerId: 1,
@@ -38,63 +52,36 @@ const Chat = () => {
     }
   };
 
-  // Функция для форматирования даты по умолчанию (DD.MM.YYYY)
-  const formatDate = (timestamp: string): string => {
-    const date = new Date(timestamp);
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}.${month}.${year}`;
-  };
-
-  // Группировка массива сообщений по дням
-  const groupMessagesByDate = (messages: TMessage[]) => {
-    const groupedMessages: { [key: string]: TMessage[] } = {};
-    messages.forEach((message) => {
-      const messageDate = new Date(message.date);
-      const now = new Date();
-      let date: string;
-      // Если сообщение прислано в текущем году, используем dateParse (пример: "1 марта"),
-      // иначе форматируем как DD.MM.YYYY
-      if (messageDate.getFullYear() == now.getFullYear()) {
-        date = dateParse(message.date);
-      } else {
-        date = formatDate(message.date);
-      }
-
-      // Добавляем сообщение в массив нужного дня
-      if (!groupedMessages[date]) {
-        groupedMessages[date] = [];
-      }
-      groupedMessages[date].push(message);
-    });
-    return groupedMessages;
-  };
-
-  // Сгруппированный объект вида { "1 марта": [...сообщения...] }
-  const groupedMessages = groupMessagesByDate(messages);
-
   return (
-    <Box sx={{ display: "flex", height: "calc(100vh - 70px)" }}>
-      {/* Левая часть экрана может быть занята списком участников или меню, здесь только чат */}
+    <Box
+      sx={{
+        display: "flex",
+        height: matches ? "calc(100vh - 70px)" : "100vh",
+        flex: 1,
+        backgroundColor: grey[200],
+      }}
+    >
       <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
         <Box
+          ref={chatContainerRef}
           sx={{
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            backgroundColor: grey[200],
-            padding: "10px 10px",
-            overflowY: "auto", // Скроллим при большом количестве сообщений
+            padding: "64px 10px",
+            paddingTop: matches ? "10px" : "80px",
+            overflowY: "auto",
           }}
         >
-          {/* Отображаем каждую группу сообщений в отдельном блоке с датой */}
+          {/* TODO: Чисто дев хуйнюшка надо бы удалить нах */}
+          {/* <Button onClick={() => setIsMyMessage(!isMyMessage)}>ПОМЕНЯТЬ</Button> */}
+          {/* <Button onClick={() => dispatch(removeAllMessages())}>УДАЛИТЬ</Button> */}
           {Object.keys(groupedMessages).map((date) => {
             const dayMessages = groupedMessages[date];
 
             return (
               <React.Fragment key={date}>
-                {/* Дата, отделяющая сообщения разных дней */}
+                {/* Контейнер с датой */}
                 <Typography
                   variant="subtitle1"
                   sx={{ textAlign: "center", margin: "10px 0" }}
@@ -103,27 +90,28 @@ const Chat = () => {
                   {date}
                 </Typography>
 
-                {/* Массив сообщений за конкретный день */}
-                {dayMessages.map((message, index) => {
-                  const prevMessage = dayMessages[index - 1];
-                  const sameOwner =
-                    prevMessage && prevMessage.ownerId === message.ownerId;
 
+                {dayMessages.map((message, index) => {
+                  // Проверяем является ли владелец текущего сообщения таким же, как у предыдущего (это нужно для отображения аватарки)
+                  const prevMessage = dayMessages[index - 1];
+                  const isSameOwner =
+                    prevMessage && prevMessage.ownerId === message.ownerId;
                   return (
                     <Box
-                      className="animatedMessage"
                       key={`${message.date}-${index}`}
                       sx={{
                         display: "flex",
                         maxWidth: "95%",
-                        mt: sameOwner ? 0.5 : 2, // Меньший отступ между сообщениями одного автора
+                        // Увеличиваем отступ если владелец сообщения не такой же, как у предыдущего, тем самым группируя сообщения по пользователям
+                        mt: isSameOwner ? 0.5 : 2,
                         flexDirection: "row",
                         alignItems: "center",
                         gap: 1,
+                        animation: `${pump} 0.3s ease-in-out`,
                       }}
                     >
-                      {/* Если отправитель сообщения тот же, что и у предыдущего, убираем аватарку */}
-                      {sameOwner ? (
+                      {/* Добавляем аватарку */}
+                      {isSameOwner ? (
                         <Box
                           sx={{
                             width: 35,
@@ -134,7 +122,7 @@ const Chat = () => {
                         <Avatar
                           src={
                             message.ownerId === 1
-                              ? "" // Можно указать ссылку на аватарку текущего пользователя
+                              ? ""
                               : "/profile/profile_image.png"
                           }
                           sx={{
@@ -144,11 +132,10 @@ const Chat = () => {
                             height: 35,
                           }}
                         >
+                          {/* TODO: Добавить логику отображения аватарки */}
                           4
                         </Avatar>
                       )}
-
-                      {/* Компонент, отвечающий за отображение отдельного сообщения */}
                       <MessageBox messageObj={message} date={message.date}>
                         {message.text}
                       </MessageBox>
@@ -158,17 +145,27 @@ const Chat = () => {
               </React.Fragment>
             );
           })}
-          {/* Этот элемент отслеживается useRef для прокрутки чата к концу */}
+          {/* Ссылка на низ страницы */}
           <Box ref={messagesEndRef} />
         </Box>
-        {/* Область ввода нового сообщения */}
+        {/* Кнопка быстрого перехода к концу переписки появляется если мы не внизу и при достаточном количестве сообщений */}
+        {!isAtBottom && messages.length > 11 && (
+          <DownButton
+            onClick={() => {
+              messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          />
+        )}
         <Box
           sx={{
+            display: "flex",
             backgroundColor: "white",
             overflow: "hidden",
+            position: "fixed",
+            bottom: 0,
+            width: "100%",
           }}
         >
-          {/* Поле для ввода нового сообщения (MessageTextArea) */}
           <MessageTextArea
             onSubmit={onSubmit}
             placeholder="Отправить сообщение"

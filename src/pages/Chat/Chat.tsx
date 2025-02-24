@@ -8,6 +8,7 @@ import { useAppDispatch, useAppMedia, useAppSelector } from "../../hooks/hooks";
 import { pump } from "../../lib/animations";
 import { addMessage } from "../../slices/messageSlice";
 import { groupMessagesByDate } from "../../utils/groupMessageByDate";
+import { useHandleScroll } from "../../hooks/useHandleScroll";
 
 const Chat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -25,20 +26,7 @@ const Chat = () => {
   }, [messages]);
 
   // Обработчик прокрутки, скрывающий кнопку, если скролл находится внизу
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!chatContainerRef.current) return;
-      const { scrollTop, scrollHeight, clientHeight } =
-        chatContainerRef.current;
-      setIsAtBottom(scrollHeight - scrollTop <= clientHeight + 30);
-    };
-
-    chatContainerRef.current?.addEventListener("scroll", handleScroll);
-    return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      chatContainerRef.current?.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  useHandleScroll(setIsAtBottom, chatContainerRef);
 
   const onSubmit = (text: string) => {
     if (text) {
@@ -90,7 +78,6 @@ const Chat = () => {
                   {date}
                 </Typography>
 
-
                 {dayMessages.map((message, index) => {
                   // Проверяем является ли владелец текущего сообщения таким же, как у предыдущего (это нужно для отображения аватарки)
                   const prevMessage = dayMessages[index - 1];
@@ -132,8 +119,7 @@ const Chat = () => {
                             height: 35,
                           }}
                         >
-                          {/* TODO: Добавить логику отображения аватарки */}
-                          4
+                          {/* TODO: Добавить логику отображения аватарки */}4
                         </Avatar>
                       )}
                       <MessageBox messageObj={message} date={message.date}>

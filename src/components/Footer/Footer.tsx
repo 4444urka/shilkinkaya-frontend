@@ -25,7 +25,7 @@ const Footer = () => {
             О нас
           </Typography>
           <Typography variant="body2">
-            Здесь самые унмые мысли. И Коробец.
+            Здесь самые умные мысли. И Коробец.
           </Typography>
         </Box>
         <Box sx={{ ml: !matches ? "0 !important" : 0 }}>

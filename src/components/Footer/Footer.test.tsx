@@ -15,7 +15,7 @@ describe("Footer component", () => {
 
   test("renders 'О нас' section with description", () => {
     const aboutHeading = screen.getByText("О нас");
-    const aboutText = screen.getByText("Здесь самые унмые мысли. И Коробец.");
+    const aboutText = screen.getByText("Здесь самые умные мысли. И Коробец.");
     expect(aboutHeading).toBeInTheDocument();
     expect(aboutText).toBeInTheDocument();
   });

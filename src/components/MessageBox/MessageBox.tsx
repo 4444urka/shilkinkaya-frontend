@@ -11,7 +11,6 @@ interface IMessageProps extends PaperProps {
   messageObj: TMessage;
   type?: "my" | "notMy";
   date?: string;
-  children: React.ReactNode;
 }
 
 const baseMessageStyles = {
@@ -38,7 +37,6 @@ const NotMyMessageStyles = {
 
 const MessageBox: React.FC<IMessageProps> = ({
   messageObj,
-  children,
   date = messageObj.date,
   type = messageObj.ownerId === base_user_id ? "my" : "notMy",
   ...restProps
@@ -58,7 +56,7 @@ const MessageBox: React.FC<IMessageProps> = ({
       }}
       {...restProps}
     >
-      <Typography variant="body1">{children}</Typography>
+      <Typography variant="body1">{messageObj.text}</Typography>
       <Typography
         variant="subtitle2"
         sx={{

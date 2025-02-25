@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 import React from "react";
 import Typed from "typed.js";
+import { useAppMedia } from "../../hooks/hooks";
 import { text } from "../../utils/homepageText";
 import "./styles.css";
-import { useAppMedia } from "../../hooks/hooks";
 
 const Homepage = () => {
   const matches = useAppMedia();

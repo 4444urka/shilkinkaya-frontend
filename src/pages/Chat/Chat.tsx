@@ -110,6 +110,8 @@ const Chat = () => {
                           src={
                             message.ownerId === 1
                               ? ""
+                              : message.ownerId === 3
+                              ? "https://kubix.com.ua/upload/resize_cache/webp/iblock/7eb/vy1tsunwc7f210hqjaecmp1gz18937y1.webp"
                               : "/profile/profile_image.png"
                           }
                           sx={{
@@ -122,9 +124,7 @@ const Chat = () => {
                           {/* TODO: Добавить логику отображения аватарки */}4
                         </Avatar>
                       )}
-                      <MessageBox messageObj={message} date={message.date}>
-                        {message.text}
-                      </MessageBox>
+                      <MessageBox messageObj={message} />
                     </Box>
                   );
                 })}

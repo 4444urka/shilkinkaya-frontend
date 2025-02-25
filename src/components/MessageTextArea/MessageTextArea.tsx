@@ -45,7 +45,7 @@ const MessageTextArea: React.FC<IMessageTextAreaProps> = ({
         {...restProps}
       />
       <IconButton
-        disabled={!messageText}
+        disabled={!messageText.trim()}
         type="submit"
         color="primary"
         sx={{ p: "10px" }}

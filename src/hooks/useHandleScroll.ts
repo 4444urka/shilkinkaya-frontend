@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useHandleScroll = (
+export const useScrollObserver = (
   setIsAtBottom: (value: React.SetStateAction<boolean>) => void,
   chatContainerRef: React.RefObject<HTMLDivElement>
 ) => {

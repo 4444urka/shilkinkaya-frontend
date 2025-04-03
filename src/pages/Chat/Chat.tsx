@@ -8,7 +8,7 @@ import { useAppDispatch, useAppMedia, useAppSelector } from "../../hooks/hooks";
 import { pump } from "../../lib/animations";
 import { addMessage } from "../../slices/messageSlice";
 import { groupMessagesByDate } from "../../utils/groupMessageByDate";
-import { useHandleScroll } from "../../hooks/useHandleScroll";
+import { useScrollObserver } from "../../hooks/useHandleScroll";
 
 const Chat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -26,7 +26,7 @@ const Chat = () => {
   }, [messages]);
 
   // Обработчик прокрутки, скрывающий кнопку, если скролл находится внизу
-  useHandleScroll(setIsAtBottom, chatContainerRef);
+  useScrollObserver(setIsAtBottom, chatContainerRef);
 
   const onSubmit = (text: string) => {
     if (text) {
